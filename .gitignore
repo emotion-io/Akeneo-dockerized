@@ -38,9 +38,7 @@ yarn.lock
 package-lock.json
 
 .env
-/docker/*
-!/docker/akeneo.conf
-!/docker/httpd.conf
 docker-compose.override.yml
 
 .env
+.idea/
