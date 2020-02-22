@@ -10,7 +10,8 @@ app/config/security_test.yml
 .circleci/
 .git/
 .idea/
-bin/
+bin/docker/
+bin/symfony_requirements
 docker/
 node_modules/
 upgrades/
@@ -23,6 +24,8 @@ var/SymfonyRequirements.php
 
 web/*
 !web/app.php
+!web/favicon.ico
+!web/robots.txt
 
 .dockerignore
 .env
@@ -30,7 +33,5 @@ web/*
 CHANGELOG-*.md
 docker-compose*
 LICENCE.txt
-package.json
 README.md
 UPGRADE-*.md
-yarn.lock

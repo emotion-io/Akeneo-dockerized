@@ -23,5 +23,18 @@ services:
     networks:
       - akeneo
 
+  httpd:
+    build:
+      dockerfile: docker/prod/httpd/Dockerfile
+      context: .
+      args:
+        - BASE_SECRET_WEBSERVER_IMAGE=secret-web-server
+    image: akeneo-docker-httpd
+    container_name: akeneo-docker-httpd
+    ports:
+      - '80:80'
+    networks:
+      - akeneo
+
 networks:
   akeneo:
