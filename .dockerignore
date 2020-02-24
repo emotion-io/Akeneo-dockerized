@@ -12,7 +12,8 @@ app/config/security_test.yml
 .idea/
 bin/docker/
 bin/symfony_requirements
-docker/
+docker/fpm/secret/
+docker/httpd/secret/
 node_modules/
 upgrades/
 vendor/

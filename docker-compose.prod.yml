@@ -23,6 +23,15 @@ services:
     networks:
       - akeneo
 
+  migrations:
+    build:
+      dockerfile: docker/prod/migrations/Dockerfile
+      context: .
+    image: akeneo-docker-migrations
+    container_name: akeneo-docker-migrations
+    networks:
+      - akeneo
+
   httpd:
     build:
       dockerfile: docker/prod/httpd/Dockerfile

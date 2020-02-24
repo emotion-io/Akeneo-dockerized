@@ -13,7 +13,11 @@ RUN php -d memory_limit=3G /usr/local/bin/composer install \
     --no-autoloader \
     --no-scripts
 
-COPY . .
+COPY app app
+COPY bin bin
+COPY src src
+COPY var var
+COPY web web
 
 RUN composer dump-autoload \
     --no-dev \
