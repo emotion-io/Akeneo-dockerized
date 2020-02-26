@@ -41,7 +41,9 @@ USER docker
 RUN mkdir -p app/file_storage/catalog \
  && mkdir -p app/archive \
  && mkdir -p app/uploads/product \
- && mkdir -p web/bundles
+ && mkdir -p web/media
+
+RUN php bin/console pim:installer:assets --env=prod --no-debug
 
 ENV APP_ENV prod
 ENV APP_DEBUG 0

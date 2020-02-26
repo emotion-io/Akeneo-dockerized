@@ -9,6 +9,8 @@ services:
         - BASE_FPM_IMAGE=akeneo-fpm-secret
     image: akeneo-docker-fpm
     container_name: akeneo-docker-fpm
+    volumes:
+      - 'media:/srv/pim/web/media'
     networks:
       - akeneo
 
@@ -42,6 +44,8 @@ services:
     container_name: akeneo-docker-httpd
     ports:
       - '5555:80'
+    volumes:
+      - 'media:/srv/pim/web/media:ro'
     networks:
       - akeneo
 
@@ -53,6 +57,9 @@ services:
       discovery.type: 'single-node'
     networks:
       - akeneo
+
+volumes:
+  media:
 
 networks:
   akeneo:
