@@ -10,7 +10,7 @@ services:
     image: akeneo-docker-fpm
     container_name: akeneo-docker-fpm
     volumes:
-      - 'media:/srv/pim/web/media'
+      - 'web-media-cache:/srv/pim/web/media/cache'
     networks:
       - akeneo
 
@@ -45,7 +45,7 @@ services:
     ports:
       - '5555:80'
     volumes:
-      - 'media:/srv/pim/web/media:ro'
+      - 'web-media-cache:/srv/pim/web/media/cache:ro'
     networks:
       - akeneo
 
@@ -59,7 +59,7 @@ services:
       - akeneo
 
 volumes:
-  media:
+  web-media-cache:
 
 networks:
   akeneo:
