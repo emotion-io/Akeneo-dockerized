@@ -23,12 +23,12 @@ services:
     networks:
       - akeneo
 
-  migrations:
+  db-tasks:
     build:
-      dockerfile: docker/prod/migrations/Dockerfile
+      dockerfile: docker/prod/db/Dockerfile
       context: .
-    image: akeneo-docker-migrations
-    container_name: akeneo-docker-migrations
+    image: akeneo-docker-db-tasks
+    container_name: akeneo-docker-db-tasks
     networks:
       - akeneo
 
@@ -41,7 +41,16 @@ services:
     image: akeneo-docker-httpd
     container_name: akeneo-docker-httpd
     ports:
-      - '80:80'
+      - '5555:80'
+    networks:
+      - akeneo
+
+  elasticsearch:
+    image: 'docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.4'
+    container_name: akeneo-docker-elasticsearch
+    environment:
+      ES_JAVA_OPTS: '${ES_JAVA_OPTS:--Xms512m -Xmx512m}'
+      discovery.type: 'single-node'
     networks:
       - akeneo
 

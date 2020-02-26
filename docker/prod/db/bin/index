@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+/srv/pim/bin/console akeneo:elasticsearch:reset-indexes --no-interaction --env=prod --no-debug
