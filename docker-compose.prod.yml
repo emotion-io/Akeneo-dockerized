@@ -8,7 +8,6 @@ services:
       args:
         - BASE_FPM_IMAGE=${BASE_FPM_IMAGE}
     image: akeneo-docker-fpm
-    container_name: akeneo-docker-fpm
     volumes:
       - 'web-media-cache:/srv/pim/web/media/cache'
     networks:
@@ -16,7 +15,6 @@ services:
 
   mysql:
     image: 'mysql:5.7'
-    container_name: akeneo-docker-mysql
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
       MYSQL_USER: '${MYSQL_USER}'
@@ -32,7 +30,6 @@ services:
       dockerfile: docker/prod/db/Dockerfile
       context: .
     image: akeneo-docker-db-tasks
-    container_name: akeneo-docker-db-tasks
     networks:
       - akeneo
 
@@ -43,7 +40,6 @@ services:
       args:
         - BASE_SECRET_WEBSERVER_IMAGE=${BASE_SECRET_WEBSERVER_IMAGE}
     image: akeneo-docker-httpd
-    container_name: akeneo-docker-httpd
     ports:
       - '${DOCKER_PORT_HTTP}:80'
     volumes:
@@ -53,7 +49,6 @@ services:
 
   elasticsearch:
     image: 'docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.4'
-    container_name: akeneo-docker-elasticsearch
     environment:
       ES_JAVA_OPTS: '${ES_JAVA_OPTS:--Xms512m -Xmx512m}'
       discovery.type: 'single-node'
@@ -64,7 +59,6 @@ services:
 
   object-storage:
     image: 'minio/minio'
-    container_name: akeneo-docker-object-storage
     entrypoint: '/bin/sh -c "mkdir -p /data/archive /data/catalog/ /data/jobs && minio server /data"'
     environment:
       MINIO_ACCESS_KEY: '${MINIO_ACCESS_KEY}'
