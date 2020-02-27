@@ -6,7 +6,7 @@ services:
       dockerfile: docker/prod/fpm/Dockerfile
       context: .
       args:
-        - BASE_FPM_IMAGE=akeneo-fpm-secret
+        - BASE_FPM_IMAGE=${BASE_FPM_IMAGE}
     image: akeneo-docker-fpm
     container_name: akeneo-docker-fpm
     volumes:
@@ -18,12 +18,12 @@ services:
     image: 'mysql:5.7'
     container_name: akeneo-docker-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 'root'
-      MYSQL_USER: 'akeneo_pim'
-      MYSQL_PASSWORD: 'akeneo_pim'
-      MYSQL_DATABASE: 'akeneo_pim'
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
     volumes:
-      - 'rdbms-data:/var/lib/mysql'
+      - 'mysql-data:/var/lib/mysql'
     networks:
       - akeneo
 
@@ -41,11 +41,11 @@ services:
       dockerfile: docker/prod/httpd/Dockerfile
       context: .
       args:
-        - BASE_SECRET_WEBSERVER_IMAGE=secret-web-server
+        - BASE_SECRET_WEBSERVER_IMAGE=${BASE_SECRET_WEBSERVER_IMAGE}
     image: akeneo-docker-httpd
     container_name: akeneo-docker-httpd
     ports:
-      - '5555:80'
+      - '${DOCKER_PORT_HTTP}:80'
     volumes:
       - 'web-media-cache:/srv/pim/web/media/cache:ro'
     networks:
@@ -64,7 +64,7 @@ services:
 
 volumes:
   web-media-cache:
-  rdbms-data:
+  mysql-data:
   es-data:
 
 networks:
