@@ -33,6 +33,9 @@ services:
       dockerfile: docker/prod/db/Dockerfile
       context: .
     image: akeneo-docker-db-tasks
+    volumes:
+      - 'file_storage:/srv/pim/app/file_storage'
+      - 'archives:/srv/pim/app/archive'
     networks:
       - akeneo
 
