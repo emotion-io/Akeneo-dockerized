@@ -13,5 +13,6 @@ RUN yarn run less && yarn run webpack
 
 FROM $BASE_SECRET_WEBSERVER_IMAGE as web-server
 
-#COPY --from=compiled-assets --chown=root:root /srv/pim/web /srv/pim/web
+LABEL maintainer="Justas Bieliauskas github.com/justasbieliauskas"
+
 COPY --from=compiled-assets --chown=1000:1000 /srv/pim/web /srv/pim/web

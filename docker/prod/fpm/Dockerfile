@@ -28,6 +28,8 @@ RUN php vendor/sensio/distribution-bundle/Resources/bin/build_bootstrap.php var 
 
 FROM $BASE_FPM_IMAGE as fpm
 
+LABEL maintainer="Justas Bieliauskas github.com/justasbieliauskas"
+
 # Create temporary directories
 RUN mkdir -p /tmp/pim/file_storage \
  && mkdir -p /tmp/pim/upload_tmp_dir \

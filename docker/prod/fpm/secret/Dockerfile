@@ -1,5 +1,7 @@
 FROM php:7.2-fpm-alpine
 
+LABEL maintainer="Justas Bieliauskas github.com/justasbieliauskas"
+
 # Various
 RUN docker-php-ext-install pdo_mysql bcmath exif
 
