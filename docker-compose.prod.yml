@@ -10,6 +10,9 @@ services:
     image: akeneo-docker-fpm
     volumes:
       - 'web-media-cache:/srv/pim/web/media/cache'
+      - 'file_storage:/srv/pim/app/file_storage'
+      - 'archives:/srv/pim/app/archive'
+      - 'uploads:/srv/pim/app/uploads'
     networks:
       - akeneo
 
@@ -70,6 +73,9 @@ volumes:
   web-media-cache:
   mysql-data:
   es-data:
+  file_storage:
+  archives:
+  uploads:
 
 networks:
   akeneo:
