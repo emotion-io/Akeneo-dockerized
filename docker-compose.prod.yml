@@ -69,6 +69,18 @@ services:
     networks:
       - akeneo
 
+  daemon:
+    build:
+      dockerfile: docker/prod/daemon/Dockerfile
+      context: .
+    image: akeneo-docker-daemon
+    volumes:
+      - 'file_storage:/srv/pim/app/file_storage'
+      - 'archives:/srv/pim/app/archive'
+      - 'uploads:/srv/pim/app/uploads'
+    networks:
+      - akeneo
+
 volumes:
   web-media-cache:
   mysql-data:
