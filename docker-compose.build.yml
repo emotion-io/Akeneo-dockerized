@@ -1,7 +1,13 @@
 version: '3'
 
 services:
-    image: emotionio/akeneo:ce-3.2-fpm
+  fpm:
+    build:
+      dockerfile: docker/prod/fpm/Dockerfile
+      context: .
+      args:
+        - BASE_FPM_IMAGE=${BASE_FPM_IMAGE}
+    image: akeneo-docker-fpm
     volumes:
       - 'web-media-cache:/srv/pim/web/media/cache'
       - 'file_storage:/srv/pim/app/file_storage'
@@ -23,7 +29,10 @@ services:
       - akeneo
 
   db-tasks:
-    image: emotionio/akeneo:ce-3.2-db-tasks
+    build:
+      dockerfile: docker/prod/db/Dockerfile
+      context: .
+    image: akeneo-docker-db-tasks
     volumes:
       - 'file_storage:/srv/pim/app/file_storage'
       - 'archives:/srv/pim/app/archive'
@@ -31,10 +40,14 @@ services:
       - akeneo
 
   httpd:
-    image: emotionio/akeneo:ce-3.2-httpd
+    build:
+      dockerfile: docker/prod/httpd/Dockerfile
+      context: .
+      args:
+        - BASE_SECRET_WEBSERVER_IMAGE=${BASE_SECRET_WEBSERVER_IMAGE}
+    image: akeneo-docker-httpd
     ports:
-      - '80:80'
-      - '443:443'
+      - '${DOCKER_PORT_HTTP}:80'
     volumes:
       - 'web-media-cache:/srv/pim/web/media/cache:ro'
     networks:
@@ -60,7 +73,10 @@ services:
       - akeneo
 
   daemon:
-    image: emotionio/akeneo:ce-3.2-daemon
+    build:
+      dockerfile: docker/prod/daemon/Dockerfile
+      context: .
+    image: akeneo-docker-daemon
     volumes:
       - 'file_storage:/srv/pim/app/file_storage'
       - 'archives:/srv/pim/app/archive'
