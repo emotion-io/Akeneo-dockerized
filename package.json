@@ -87,7 +87,7 @@
     "text-loader": "0.0.1",
     "ts-loader": "5.3.3",
     "typescript": "3.3.3333",
-    "underscore": "1.8.3",
+    "underscore": "1.12.1",
     "webpack": "4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-cleanup-plugin": "0.5.1",
